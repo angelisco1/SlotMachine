@@ -5,20 +5,6 @@ var pos;
 var machineScreen = new Array(3);
 
 
-function showScreen(){
-
-	pos[0] = getNewPosition(pos[0]);
-	pos[1] = getNewPosition(pos[1]);
-	pos[2] = getNewPosition(pos[2]);
-	pos[3] = getNewPosition(pos[3]);
-	pos[4] = getNewPosition(pos[4]);
-
-	console.log(a1[calculateNextPosition(pos[0])] + " | " + a2[calculateNextPosition(pos[1])] + " | " + a3[calculateNextPosition(pos[2])] + " | " + a4[calculateNextPosition(pos[3])] + " | " + a5[calculateNextPosition(pos[4])]);
-	console.log(a1[pos[0]] + " | " + a2[pos[1]] + " | " + a3[pos[2]] + " | " + a4[pos[3]] + " | " + a5[pos[4]]);
-	console.log(a1[calculatePreviousPosition(pos[0])] + " | " + a2[calculatePreviousPosition(pos[1])] + " | " + a3[calculatePreviousPosition(pos[2])] + " | " + a4[calculatePreviousPosition(pos[3])] + " | " + a5[calculatePreviousPosition(pos[4])]);
-
-}
-
 function initializeRolls(){
 	var roll = [];
 	var fruit = fruits[Math.floor(Math.random()*fruits.length)];
@@ -67,9 +53,120 @@ function calculatePreviousPosition(pos){
 	return prev;
 }
 
+function showScreen(){
+
+	pos[0] = getNewPosition(pos[0]);
+	pos[1] = getNewPosition(pos[1]);
+	pos[2] = getNewPosition(pos[2]);
+	pos[3] = getNewPosition(pos[3]);
+	pos[4] = getNewPosition(pos[4]);
+
+	console.log(a1[calculateNextPosition(pos[0])] + " | " + a2[calculateNextPosition(pos[1])] + " | " + a3[calculateNextPosition(pos[2])] + " | " + a4[calculateNextPosition(pos[3])] + " | " + a5[calculateNextPosition(pos[4])]);
+	console.log(a1[pos[0]] + " | " + a2[pos[1]] + " | " + a3[pos[2]] + " | " + a4[pos[3]] + " | " + a5[pos[4]]);
+	console.log(a1[calculatePreviousPosition(pos[0])] + " | " + a2[calculatePreviousPosition(pos[1])] + " | " + a3[calculatePreviousPosition(pos[2])] + " | " + a4[calculatePreviousPosition(pos[3])] + " | " + a5[calculatePreviousPosition(pos[4])]);
+
+}
+
+function calculateInLine(){
+	var points = 0;
+	
+	points += pointsInMiddleLine() + pointsInFirstLine() + pointsInLastLine();
+	
+	return points;
+}
+
+function pointsInMiddleLine(){
+	var points = 0;
+	fruit = a1[pos[0]];
+	if(fruit == a2[pos[1]] && fruit == a3[pos[2]]){
+		points = 50;
+	}
+	if(fruit == a4[pos[3]] && points == 50){
+		points += 50;
+	}
+	if(fruit == a5[pos[4]] && points == 100){
+		points += 100;
+	}
+	return points;
+}
+
+function pointsInFirstLine(){
+	var points = 0;
+	fruit = a1[calculateNextPosition(pos[0])];
+	if(fruit == a2[calculateNextPosition(pos[1])] && fruit == a3[calculateNextPosition(pos[2])]){
+		points = 20;
+	}
+	if(fruit == a4[calculateNextPosition(pos[3])] && points == 20){
+		points += 20;
+	}
+	if(fruit == a5[calculateNextPosition(pos[4])] && points == 40){
+		points += 40;
+	}
+	return points;
+}
+
+function pointsInLastLine(){
+	var points = 0;
+	fruit = a1[calculatePreviousPosition(pos[0])];
+	if(fruit == a2[calculatePreviousPosition(pos[1])] && fruit == a3[calculatePreviousPosition(pos[2])]){
+		points = 20;
+	}
+	if(fruit == a4[calculatePreviousPosition(pos[3])] && points == 20){
+		points += 20;
+	}
+	if(fruit == a5[calculatePreviousPosition(pos[4])] && points == 40){
+		points += 40;
+	}
+	return points;
+}
+
+function calculateInV(){
+	var points = 0;
+	
+	points += pointsInV() + pointsInReverseV();
+	
+	return points;
+}
+
+function pointsInV(){
+	var points = 0;
+	fruit = a1[calculateNextPosition(pos[0])];
+	if(fruit == a2[pos[1]] && fruit == a3[calculatePreviousPosition(pos[2])]){
+		points += 30;
+	}
+	if(fruit == a4[pos[3]] && points == 30){
+		points += 30;
+	}
+	if(fruit == a5[calculateNextPosition(pos[4])] && points == 60){
+		points += 60;
+	}
+	return points;
+}
+
+function pointsInReverseV(){
+	var points = 0;
+	fruit = a1[calculatePreviousPosition(pos[0])];
+	if(fruit == a2[pos[1]] && fruit == a3[calculateNextPosition(pos[2])]){
+		points += 30;
+	}
+	if(fruit == a4[pos[3]] && points == 30){
+		points += 30;
+	}
+	if(fruit == a5[calculatePreviousPosition(pos[4])] && points == 60){
+		points += 60;
+	}
+	return points;
+}
+
+function calculatePoints(){
+	return calculateInLine() + calculateInV();
+}
+
 function play(){
 
 	showScreen();
+
+	console.log(calculatePoints());
 	
 }
 
