@@ -168,11 +168,12 @@ function calculatePoints(){
 
 function play(){
 	showScreen();
+	changeEarnedCoins(0);
 	calculateMyCoins();
 
 	var coins = calculatePoints();
 	if(coins > 0){
-		$('#prize').text(coins);
+		changeEarnedCoins(coins);
 		myCoins += coins;
 		changeMyCoins();
 	}
@@ -213,4 +214,8 @@ function calculateMyCoins(){
 
 function changeMyCoins(){
 	$('#my-coins').text(myCoins);
+}
+
+function changeEarnedCoins(coins){
+	$('#prize').text(coins);
 }
