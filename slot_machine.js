@@ -2,8 +2,10 @@ var fruits = ['cherry', 'grapes', 'lemon', 'orange', 'diamond white', 'diamond g
 var a1, a2, a3, a4, a5;
 var a1s, a2s, a3s, a4s, a5s;
 var pos;
+var myCoins = 1000;
 var machineScreen = new Array(3);
-
+var info = "Apuestas: \n- Primera linea: 10€ \n- Segunda linea: 5€ \n- Tercera linea: 15€ \n- V: 20€ \n- Reverse V: 25€" +
+			"Premios: \n- 3 frutas seguidas: ... \n- 4 frutas seguidas: ... \n- 5 frutas seguidas: ...";
 
 function initializeRolls(){
 	var roll = [];
@@ -27,13 +29,15 @@ function getNewPosition(pos){
 
 function initializeGame(){
 
-	pos = [0, 0, 0, 0, 0]
+	pos = [0, 0, 0, 0, 0];
 
 	a1 = initializeRolls();
 	a2 = initializeRolls();
 	a3 = initializeRolls();
 	a4 = initializeRolls();
 	a5 = initializeRolls();
+
+	$('#my-coins').text(myCoins);
 
 }
 
@@ -163,14 +167,50 @@ function calculatePoints(){
 }
 
 function play(){
-
 	showScreen();
+	calculateMyCoins();
 
-	console.log(calculatePoints());
-	
+	var coins = calculatePoints();
+	if(coins > 0){
+		$('#prize').text(coins);
+		myCoins += coins;
+		changeMyCoins();
+	}
 }
 
 $(document).on('click', '#btn-play', function(event){
 	event.preventDefault();
 	play();
 });
+
+$(document).on('click', '#btn-bet-less', function(event){
+	event.preventDefault();
+	var bet = parseInt($('#current-bet').text());
+	if(bet>5){
+		bet -= 5;
+	}
+	$('#current-bet').text(bet);
+});
+
+$(document).on('click', '#btn-bet-more', function(event){
+	event.preventDefault();
+	var bet = parseInt($('#current-bet').text());
+	if(bet<25){
+		bet += 5;
+	}
+	$('#current-bet').text(bet);
+});
+
+$(document).on('click', '#btn-info', function(event){
+	event.preventDefault();
+	
+});
+
+function calculateMyCoins(){
+	myCoins = myCoins - parseInt($('#current-bet').text());
+	changeMyCoins();
+}
+
+function changeMyCoins(){
+	$('#my-coins').text(myCoins);
+}

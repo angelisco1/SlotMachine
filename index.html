@@ -2,13 +2,24 @@
 <html>
 <head>
 	<title></title>
+	<meta charset="utf-8">
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<style type="text/css" src="stylesheets.css"></style>
+	<style type="text/css" src="./stylesheets.css"></style>
 	<script src="slot_machine.js"></script>
 </head>
 <body onload="initializeGame()">
 	<h1>Game</h1>
-
-	<button id="btn-play" type="submit">Play</button>
+	<div id="options-panel">
+		<span>WIN: <span id="prize">0</span>€</span>
+		
+		<span>
+			BET: <span id="current-bet">5</span>€
+			<button class="btn-bet" id="btn-bet-less" type="submit">-</button>
+			<button class="btn-bet" id="btn-bet-more" type="submit">+</button>
+		</span>
+		<span>My coins: <span id="my-coins"></span>€</span>
+		<button class="btn-bet" id="btn-play" type="submit">Play</button>
+		<button id="btn-info" type="submit">Info</button>
+	</div>
 </body>
 </html>
