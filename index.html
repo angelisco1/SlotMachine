@@ -6,20 +6,39 @@
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<style type="text/css" src="./stylesheets.css"></style>
 	<script src="slot_machine.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body onload="initializeGame()">
 	<h1>Game</h1>
 	<div id="options-panel">
-		<span>WIN: <span id="prize">0</span>€</span>
-		
+		<span>WIN: <span id="prize">0</span>€</span>		
 		<span>
 			BET: <span id="current-bet">5</span>€
-			<button class="btn-bet" id="btn-bet-less" type="submit">-</button>
-			<button class="btn-bet" id="btn-bet-more" type="submit">+</button>
+			<button class="btn btn-primary btn-bet" id="btn-bet-less" type="submit">-</button>
+			<button class="btn btn-primary btn-bet" id="btn-bet-more" type="submit">+</button>
 		</span>
 		<span>My coins: <span id="my-coins"></span>€</span>
-		<button class="btn-bet" id="btn-play" type="submit">Play</button>
-		<button id="btn-info" type="submit">Info</button>
+		<button class="btn btn-danger btn-bet" id="btn-play" type="submit">Play</button>
+		<button type="button" class="btn btn-info" id="btn-info" data-toggle="modal" data-target=".bs-example-modal-sm">Info</button>
 	</div>
+
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">Game Info</h4>
+      		</div>
+		    <div class="modal-body">
+		    	<p id="info-panel"></p>
+		    </div>
+    		<div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    		</div>
+	    </div>
+	  </div>
+	</div>
+
 </body>
 </html>

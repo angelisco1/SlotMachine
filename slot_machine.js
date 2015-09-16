@@ -4,8 +4,8 @@ var a1s, a2s, a3s, a4s, a5s;
 var pos;
 var myCoins = 1000;
 var machineScreen = new Array(3);
-var info = "Apuestas: \n- Primera linea: 10€ \n- Segunda linea: 5€ \n- Tercera linea: 15€ \n- V: 20€ \n- Reverse V: 25€" +
-			"Premios: \n- 3 frutas seguidas: ... \n- 4 frutas seguidas: ... \n- 5 frutas seguidas: ...";
+var info = 'Apuestas:  <ul><li>Primera linea: 10€</li><li>Segunda linea: 5€</li><li>Tercera linea: 15€</li><li>V: 20€</li><li>Reverse V: 25€</li></ul>' +
+			'Premios: <ul><li>3 frutas seguidas: ...</li><li>4 frutas seguidas: ...</li><li>5 frutas seguidas: ...</li></ul>';
 
 function initializeRolls(){
 	var roll = [];
@@ -179,6 +179,20 @@ function play(){
 	}
 }
 
+function calculateMyCoins(){
+	myCoins = myCoins - parseInt($('#current-bet').text());
+	changeMyCoins();
+}
+
+function changeMyCoins(){
+	$('#my-coins').text(myCoins);
+}
+
+function changeEarnedCoins(coins){
+	$('#prize').text(coins);
+}
+
+
 $(document).on('click', '#btn-play', function(event){
 	event.preventDefault();
 	play();
@@ -204,18 +218,6 @@ $(document).on('click', '#btn-bet-more', function(event){
 
 $(document).on('click', '#btn-info', function(event){
 	event.preventDefault();
-	
+	$('#info-panel').append(info);
 });
 
-function calculateMyCoins(){
-	myCoins = myCoins - parseInt($('#current-bet').text());
-	changeMyCoins();
-}
-
-function changeMyCoins(){
-	$('#my-coins').text(myCoins);
-}
-
-function changeEarnedCoins(coins){
-	$('#prize').text(coins);
-}
