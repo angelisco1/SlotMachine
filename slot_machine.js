@@ -2,10 +2,13 @@ var fruits = ['cherry', 'grapes', 'lemon', 'orange', 'diamond white', 'diamond g
 var a1, a2, a3, a4, a5;
 var a1s, a2s, a3s, a4s, a5s;
 var pos;
+var line = 1;
 var myCoins = 1000;
 var machineScreen = new Array(3);
-var info = 'Apuestas:  <ul><li>Primera linea: 10€</li><li>Segunda linea: 5€</li><li>Tercera linea: 15€</li><li>V: 20€</li><li>Reverse V: 25€</li></ul>' +
-			'Premios: <ul><li>3 frutas seguidas: ...</li><li>4 frutas seguidas: ...</li><li>5 frutas seguidas: ...</li></ul>';
+var info = 'Apuestas:  <ul><li>Segunda linea: 5€</li><li>Primera linea: 10€</li><li>Tercera linea: 15€</li><li>V: 20€</li><li>V invertida: 25€</li></ul>' +
+			'Premios: <ul><li>Primera y tercera lineas:<ul><li>3 frutas seguidas: 20€</li><li>4 frutas seguidas: ant + 20€</li><li>5 frutas seguidas: ant + 40€</li></ul></li>' + 
+			'<li>Segunda linea:<ul><li>3 frutas seguidas: 50€</li><li>4 frutas seguidas: ant + 50€</li><li>5 frutas seguidas: ant + 100€</li></ul></li>' + 
+			'<li>V y V invertida:<ul><li>3 frutas seguidas: 30€</li><li>4 frutas seguidas: ant + 30€</li><li>5 frutas seguidas: ant + 60€</li></ul></li></ul>';
 
 function initializeRolls(){
 	var roll = [];
@@ -38,6 +41,8 @@ function initializeGame(){
 	a5 = initializeRolls();
 
 	$('#my-coins').text(myCoins);
+	$('#current-bet').text('5');
+	$('#current-line').text(line);
 
 }
 
@@ -74,7 +79,9 @@ function showScreen(){
 function calculateInLine(){
 	var points = 0;
 	
-	points += pointsInMiddleLine() + pointsInFirstLine() + pointsInLastLine();
+	points += pointsInMiddleLine();
+	if(line >= 2){points += pointsInFirstLine();}
+	if(line >= 3){points += pointsInLastLine();}
 	
 	return points;
 }
@@ -127,7 +134,8 @@ function pointsInLastLine(){
 function calculateInV(){
 	var points = 0;
 	
-	points += pointsInV() + pointsInReverseV();
+	if(line >= 4){points += pointsInV();}
+	if(line >= 5){points += pointsInReverseV();}
 	
 	return points;
 }
@@ -203,8 +211,10 @@ $(document).on('click', '#btn-bet-less', function(event){
 	var bet = parseInt($('#current-bet').text());
 	if(bet>5){
 		bet -= 5;
+		line--;
+		$('#current-bet').text(bet);
+		$('#current-line').text(line);
 	}
-	$('#current-bet').text(bet);
 });
 
 $(document).on('click', '#btn-bet-more', function(event){
@@ -212,12 +222,14 @@ $(document).on('click', '#btn-bet-more', function(event){
 	var bet = parseInt($('#current-bet').text());
 	if(bet<25){
 		bet += 5;
+		line++;
+		$('#current-bet').text(bet);
+		$('#current-line').text(line);
 	}
-	$('#current-bet').text(bet);
 });
 
 $(document).on('click', '#btn-info', function(event){
 	event.preventDefault();
-	$('#info-panel').append(info);
+	$('#info-panel').html(info);
 });
 
