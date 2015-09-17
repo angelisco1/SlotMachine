@@ -1,7 +1,13 @@
-var fruits = ['cherry', 'grapes', 'lemon', 'orange', 'diamond white', 'diamond gold', 'x2', 'x5', 'x7', 'bonus'];
+var fruits = [{name: 'cherry', image: 'images/cherry.png'}, {name: 'grapes', image: 'images/grapes.png'},
+				{name: 'lemon', image: 'images/lemon.png'}, {name: 'orange', image: 'images/orange.png'},
+				{name: 'diamond white', image: 'images/diamond_white.png'}, 
+				{name: 'diamond gold', image: 'images/diamond_gold.png'},
+				{name: 'x2', image: 'images/number_2.png'}, {name: 'x5', image: 'images/number_5.png'}, 
+				{name: 'x7', image: 'images/number_7.png'}, {name: 'bonus', image: 'images/bonus.png'}];
 var a1, a2, a3, a4, a5;
 var a1s, a2s, a3s, a4s, a5s;
 var pos;
+var size = 100;
 var line = 1;
 var myCoins = 1000;
 var machineScreen = new Array(3);
@@ -12,6 +18,7 @@ var info = 'Apuestas:  <ul><li>Segunda linea: 5€</li><li>Primera linea: 10€<
 
 function initializeRolls(){
 	var roll = [];
+	var rollImg = [];
 	var fruit = fruits[Math.floor(Math.random()*fruits.length)];
 	for (var i = 0; i < fruits.length; i++) {
 		while(roll.indexOf(fruit) != -1){
@@ -39,6 +46,9 @@ function initializeGame(){
 	a3 = initializeRolls();
 	a4 = initializeRolls();
 	a5 = initializeRolls();
+
+	showImagesOnScreen();
+
 
 	$('#my-coins').text(myCoins);
 	$('#current-bet').text('5');
@@ -70,10 +80,115 @@ function showScreen(){
 	pos[3] = getNewPosition(pos[3]);
 	pos[4] = getNewPosition(pos[4]);
 
-	console.log(a1[calculateNextPosition(pos[0])] + " | " + a2[calculateNextPosition(pos[1])] + " | " + a3[calculateNextPosition(pos[2])] + " | " + a4[calculateNextPosition(pos[3])] + " | " + a5[calculateNextPosition(pos[4])]);
-	console.log(a1[pos[0]] + " | " + a2[pos[1]] + " | " + a3[pos[2]] + " | " + a4[pos[3]] + " | " + a5[pos[4]]);
-	console.log(a1[calculatePreviousPosition(pos[0])] + " | " + a2[calculatePreviousPosition(pos[1])] + " | " + a3[calculatePreviousPosition(pos[2])] + " | " + a4[calculatePreviousPosition(pos[3])] + " | " + a5[calculatePreviousPosition(pos[4])]);
+	console.log(a1[calculateNextPosition(pos[0])].name + " | " + a2[calculateNextPosition(pos[1])].name + " | " + a3[calculateNextPosition(pos[2])].name + " | " + a4[calculateNextPosition(pos[3])].name + " | " + a5[calculateNextPosition(pos[4])].name);
+	console.log(a1[pos[0]].name + " | " + a2[pos[1]].name + " | " + a3[pos[2]].name + " | " + a4[pos[3]].name + " | " + a5[pos[4]].name);
+	console.log(a1[calculatePreviousPosition(pos[0])].name + " | " + a2[calculatePreviousPosition(pos[1])].name + " | " + a3[calculatePreviousPosition(pos[2])].name + " | " + a4[calculatePreviousPosition(pos[3])].name + " | " + a5[calculatePreviousPosition(pos[4])].name);
+	console.log('-----------------------------------------------------------------------------------------------------------------------------------------------------');
+	console.log(a1[calculateNextPosition(pos[0])].image + " | " + a2[calculateNextPosition(pos[1])].image + " | " + a3[calculateNextPosition(pos[2])].image + " | " + a4[calculateNextPosition(pos[3])].image + " | " + a5[calculateNextPosition(pos[4])].image);
+	console.log(a1[pos[0]].image + " | " + a2[pos[1]].image + " | " + a3[pos[2]].image + " | " + a4[pos[3]].image + " | " + a5[pos[4]].image);
+	console.log(a1[calculatePreviousPosition(pos[0])].image + " | " + a2[calculatePreviousPosition(pos[1])].image + " | " + a3[calculatePreviousPosition(pos[2])].image + " | " + a4[calculatePreviousPosition(pos[3])].image + " | " + a5[calculatePreviousPosition(pos[4])].image);
+	console.log('-----------------------------------------------------------------------------------------------------------------------------------------------------');
 
+	showImagesOnScreen();
+
+}
+
+function showImagesOnScreen(){
+
+	var canvas1 = document.getElementById('roll-1');
+	var ctx1 = canvas1.getContext('2d');
+	ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+	var img1R1 = new Image();
+	img1R1.onload = function(){
+		ctx1.drawImage(img1R1, 0, 0, size, size);
+	}
+	var img2R1 = new Image();
+	img2R1.onload = function(){
+		ctx1.drawImage(img2R1, 0, 100, size, size);
+	}	
+	var img3R1 = new Image();
+	img3R1.onload = function(){
+		ctx1.drawImage(img3R1, 0, 200, size, size);
+	}
+	img1R1.src = a1[calculateNextPosition(pos[0])].image;
+	img2R1.src = a1[pos[0]].image;
+	img3R1.src = a1[calculatePreviousPosition(pos[0])].image;
+
+	var canvas2 = document.getElementById('roll-2');
+	var ctx2 = canvas2.getContext('2d');
+	ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+	var img1R2 = new Image();
+	img1R2.onload = function(){
+		ctx2.drawImage(img1R2, 0, 0, size, size);
+	}
+	var img2R2 = new Image();
+	img2R2.onload = function(){
+		ctx2.drawImage(img2R2, 0, 100, size, size);
+	}	
+	var img3R2 = new Image();
+	img3R2.onload = function(){
+		ctx2.drawImage(img3R2, 0, 200, size, size);
+	}
+	img1R2.src = a2[calculateNextPosition(pos[1])].image;
+	img2R2.src = a2[pos[1]].image;
+	img3R2.src = a2[calculatePreviousPosition(pos[1])].image;
+
+	var canvas3 = document.getElementById('roll-3');
+	var ctx3 = canvas3.getContext('2d');
+	ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
+	var img1R3 = new Image();
+	img1R3.onload = function(){
+		ctx3.drawImage(img1R3, 0, 0, size, size);
+	}
+	var img2R3 = new Image();
+	img2R3.onload = function(){
+		ctx3.drawImage(img2R3, 0, 100, size, size);
+	}	
+	var img3R3 = new Image();
+	img3R3.onload = function(){
+		ctx3.drawImage(img3R3, 0, 200, size, size);
+	}
+	img1R3.src = a3[calculateNextPosition(pos[2])].image;
+	img2R3.src = a3[pos[2]].image;
+	img3R3.src = a3[calculatePreviousPosition(pos[2])].image;
+
+	var canvas4 = document.getElementById('roll-4');
+	var ctx4 = canvas4.getContext('2d');
+	ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
+	var img1R4 = new Image();
+	img1R4.onload = function(){
+		ctx4.drawImage(img1R4, 0, 0, size, size);
+	}
+	var img2R4 = new Image();
+	img2R4.onload = function(){
+		ctx4.drawImage(img2R4, 0, 100, size, size);
+	}	
+	var img3R4 = new Image();
+	img3R4.onload = function(){
+		ctx4.drawImage(img3R4, 0, 200, size, size);
+	}
+	img1R4.src = a4[calculateNextPosition(pos[3])].image;
+	img2R4.src = a4[pos[3]].image;
+	img3R4.src = a4[calculatePreviousPosition(pos[3])].image;
+
+	var canvas5 = document.getElementById('roll-5');
+	var ctx5 = canvas5.getContext('2d');
+	ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+	var img1R5 = new Image();
+	img1R5.onload = function(){
+		ctx5.drawImage(img1R5, 0, 0, size, size);
+	}
+	var img2R5 = new Image();
+	img2R5.onload = function(){
+		ctx5.drawImage(img2R5, 0, 100, size, size);
+	}	
+	var img3R5 = new Image();
+	img3R5.onload = function(){
+		ctx5.drawImage(img3R5, 0, 200, size, size);
+	}
+	img1R5.src = a5[calculateNextPosition(pos[4])].image;
+	img2R5.src = a5[pos[4]].image;
+	img3R5.src = a5[calculatePreviousPosition(pos[4])].image;
 }
 
 function calculateInLine(){

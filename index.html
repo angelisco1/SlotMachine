@@ -6,11 +6,31 @@
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<style type="text/css" src="./stylesheets.css"></style>
 	<script src="slot_machine.js"></script>
+	<script src="pixi.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body onload="initializeGame()">
-	<h1>Game</h1>
+	<h1>NeopolisG 3.0++</h1>
+	
+	<div id="game-screen">
+		<canvas id="roll-1" width="100px" height="300px">
+			
+		</canvas>
+		<canvas id="roll-2" width="100px" height="300px">
+			
+		</canvas>
+		<canvas id="roll-3" width="100px" height="300px">
+			
+		</canvas>
+		<canvas id="roll-4" width="100px" height="300px">
+			
+		</canvas>
+		<canvas id="roll-5" width="100px" height="300px">
+			
+		</canvas>		
+	</div>
+
 	<div id="options-panel">
 		<span>WIN: <span id="prize">0</span>€</span>		
 		<span>
