@@ -7,7 +7,13 @@ var fruits = [{name: 'cherry', image: 'images/cherry.png'}, {name: 'grapes', ima
 var a1, a2, a3, a4, a5;
 var a1s, a2s, a3s, a4s, a5s;
 var pos;
+
+var dx = 10;
+var dy1 = 10;
+var dy2 = 120;
+var dy3 = 230;
 var size = 100;
+
 var line = 1;
 var myCoins = 1000;
 var machineScreen = new Array(3);
@@ -97,18 +103,20 @@ function showImagesOnScreen(){
 
 	var canvas1 = document.getElementById('roll-1');
 	var ctx1 = canvas1.getContext('2d');
+	ctx1.lineWidth = 10;
 	ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+	ctx1.strokeRect(0, 0, canvas1.width, canvas1.height);
 	var img1R1 = new Image();
 	img1R1.onload = function(){
-		ctx1.drawImage(img1R1, 0, 0, size, size);
+		ctx1.drawImage(img1R1, dx, dy1, size, size);
 	}
 	var img2R1 = new Image();
 	img2R1.onload = function(){
-		ctx1.drawImage(img2R1, 0, 100, size, size);
+		ctx1.drawImage(img2R1, dx, dy2, size, size);
 	}	
 	var img3R1 = new Image();
 	img3R1.onload = function(){
-		ctx1.drawImage(img3R1, 0, 200, size, size);
+		ctx1.drawImage(img3R1, dx, dy3, size, size);
 	}
 	img1R1.src = a1[calculateNextPosition(pos[0])].image;
 	img2R1.src = a1[pos[0]].image;
@@ -116,18 +124,20 @@ function showImagesOnScreen(){
 
 	var canvas2 = document.getElementById('roll-2');
 	var ctx2 = canvas2.getContext('2d');
+	ctx2.lineWidth = 10;
 	ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+	ctx2.strokeRect(0, 0, canvas2.width, canvas2.height);
 	var img1R2 = new Image();
 	img1R2.onload = function(){
-		ctx2.drawImage(img1R2, 0, 0, size, size);
+		ctx2.drawImage(img1R2, dx, dy1, size, size);
 	}
 	var img2R2 = new Image();
 	img2R2.onload = function(){
-		ctx2.drawImage(img2R2, 0, 100, size, size);
+		ctx2.drawImage(img2R2, dx, dy2, size, size);
 	}	
 	var img3R2 = new Image();
 	img3R2.onload = function(){
-		ctx2.drawImage(img3R2, 0, 200, size, size);
+		ctx2.drawImage(img3R2, dx, dy3, size, size);
 	}
 	img1R2.src = a2[calculateNextPosition(pos[1])].image;
 	img2R2.src = a2[pos[1]].image;
@@ -135,18 +145,20 @@ function showImagesOnScreen(){
 
 	var canvas3 = document.getElementById('roll-3');
 	var ctx3 = canvas3.getContext('2d');
+	ctx3.lineWidth = 10;
 	ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
+	ctx3.strokeRect(0, 0, canvas3.width, canvas3.height);
 	var img1R3 = new Image();
 	img1R3.onload = function(){
-		ctx3.drawImage(img1R3, 0, 0, size, size);
+		ctx3.drawImage(img1R3, dx, dy1, size, size);
 	}
 	var img2R3 = new Image();
 	img2R3.onload = function(){
-		ctx3.drawImage(img2R3, 0, 100, size, size);
+		ctx3.drawImage(img2R3, dx, dy2, size, size);
 	}	
 	var img3R3 = new Image();
 	img3R3.onload = function(){
-		ctx3.drawImage(img3R3, 0, 200, size, size);
+		ctx3.drawImage(img3R3, dx, dy3, size, size);
 	}
 	img1R3.src = a3[calculateNextPosition(pos[2])].image;
 	img2R3.src = a3[pos[2]].image;
@@ -154,18 +166,20 @@ function showImagesOnScreen(){
 
 	var canvas4 = document.getElementById('roll-4');
 	var ctx4 = canvas4.getContext('2d');
+	ctx4.lineWidth = 10;
 	ctx4.clearRect(0, 0, canvas4.width, canvas4.height);
+	ctx4.strokeRect(0, 0, canvas4.width, canvas4.height);
 	var img1R4 = new Image();
 	img1R4.onload = function(){
-		ctx4.drawImage(img1R4, 0, 0, size, size);
+		ctx4.drawImage(img1R4, dx, dy1, size, size);
 	}
 	var img2R4 = new Image();
 	img2R4.onload = function(){
-		ctx4.drawImage(img2R4, 0, 100, size, size);
+		ctx4.drawImage(img2R4, dx, dy2, size, size);
 	}	
 	var img3R4 = new Image();
 	img3R4.onload = function(){
-		ctx4.drawImage(img3R4, 0, 200, size, size);
+		ctx4.drawImage(img3R4, dx, dy3, size, size);
 	}
 	img1R4.src = a4[calculateNextPosition(pos[3])].image;
 	img2R4.src = a4[pos[3]].image;
@@ -173,18 +187,20 @@ function showImagesOnScreen(){
 
 	var canvas5 = document.getElementById('roll-5');
 	var ctx5 = canvas5.getContext('2d');
+	ctx5.lineWidth = 10;
 	ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+	ctx5.strokeRect(0, 0, canvas5.width, canvas5.height);
 	var img1R5 = new Image();
 	img1R5.onload = function(){
-		ctx5.drawImage(img1R5, 0, 0, size, size);
+		ctx5.drawImage(img1R5, dx, dy1, size, size);
 	}
 	var img2R5 = new Image();
 	img2R5.onload = function(){
-		ctx5.drawImage(img2R5, 0, 100, size, size);
+		ctx5.drawImage(img2R5, dx, dy2, size, size);
 	}	
 	var img3R5 = new Image();
 	img3R5.onload = function(){
-		ctx5.drawImage(img3R5, 0, 200, size, size);
+		ctx5.drawImage(img3R5, dx, dy3, size, size);
 	}
 	img1R5.src = a5[calculateNextPosition(pos[4])].image;
 	img2R5.src = a5[pos[4]].image;
@@ -299,6 +315,11 @@ function play(){
 		changeEarnedCoins(coins);
 		myCoins += coins;
 		changeMyCoins();
+		sound = new Howl({
+			urls: ['sounds/prize.mp3'],
+			pos: 3000
+		}).play();
+		showPanelPrize(coins);
 	}
 }
 
@@ -315,10 +336,19 @@ function changeEarnedCoins(coins){
 	$('#prize').text(coins);
 }
 
+function showPanelPrize(coins){
+	$('#info-prize').text("Has ganado " + coins + "€");
+	$('.prize-panel').modal('show');
+}
 
 $(document).on('click', '#btn-play', function(event){
 	event.preventDefault();
-	play();
+	if(myCoins>0){
+		play();
+	}else{
+		myCoins = prompt('Te has quedado sin monedas, introduce mas...');
+		changeMyCoins();
+	}
 });
 
 $(document).on('click', '#btn-bet-less', function(event){
@@ -347,4 +377,3 @@ $(document).on('click', '#btn-info', function(event){
 	event.preventDefault();
 	$('#info-panel').html(info);
 });
-

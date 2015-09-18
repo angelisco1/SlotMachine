@@ -1,0 +1,39 @@
+body {
+	background-image: url("./images/back.jpg");
+}
+
+body h1 {
+	color: yellowgreen;
+}
+
+body h4 {
+	color: yellowgreen;
+}
+
+#options-panel {
+	background-color: black;
+}
+
+#buttons-panel {
+	margin-left: 70px;
+}
+
+#btn-bet-less {
+	width: 35px;
+}
+
+#btn-bet-more {
+	width: 35px;
+}
+
+#btn-play {
+	width: 100px;
+}
+
+#btn-info {
+	width: 65px;
+}
+
+#game-info-panel {
+	padding-top: 250px;
+}

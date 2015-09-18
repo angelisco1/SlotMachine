@@ -4,44 +4,44 @@
 	<title></title>
 	<meta charset="utf-8">
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<style type="text/css" src="./stylesheets.css"></style>
+	<link rel="stylesheet" href="stylesheets.css">
 	<script src="slot_machine.js"></script>
-	<script src="pixi.min.js"></script>
+	<script type="text/javascript" src="howler.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body onload="initializeGame()">
-	<h1>NeopolisG 3.0++</h1>
 	
-	<div id="game-screen">
-		<canvas id="roll-1" width="100px" height="300px">
-			
-		</canvas>
-		<canvas id="roll-2" width="100px" height="300px">
-			
-		</canvas>
-		<canvas id="roll-3" width="100px" height="300px">
-			
-		</canvas>
-		<canvas id="roll-4" width="100px" height="300px">
-			
-		</canvas>
-		<canvas id="roll-5" width="100px" height="300px">
-			
-		</canvas>		
+	<div class="col-md-6 col-md-offset-2">
+		<h1>Slot Machine</h1>
+		<div id="game-screen">
+			<canvas id="roll-1" width="120px" height="340px">
+			</canvas>
+			<canvas id="roll-2" width="120px" height="340px">
+			</canvas>
+			<canvas id="roll-3" width="120px" height="340px">
+			</canvas>
+			<canvas id="roll-4" width="120px" height="340px">
+			</canvas>
+			<canvas id="roll-5" width="120px" height="340px">
+			</canvas>
+		</div>
 	</div>
-
-	<div id="options-panel">
-		<span>WIN: <span id="prize">0</span>€</span>		
-		<span>
-			BET: <span id="current-bet"></span>€
-			<button class="btn btn-primary btn-bet" id="btn-bet-less" type="submit">-</button>
-			<button class="btn btn-primary btn-bet" id="btn-bet-more" type="submit">+</button>
-			LINES: <span id="current-line"></span>
-		</span>
-		<span>My coins: <span id="my-coins"></span>€</span>
-		<button class="btn btn-danger btn-bet" id="btn-play" type="submit">Play</button>
-		<button type="button" class="btn btn-info" id="btn-info" data-toggle="modal" data-target=".bs-example-modal-sm">Info</button>
+	<div id="game-info-panel">
+		<h4>WIN: <span id="prize">0</span>€</h4>
+		<h4>LINES: <span id="current-line"></span></h4>
+		<h4>BET: <span id="current-bet"></span>€</h4>
+		<h4>My coins: <span id="my-coins"></span>€</h4>
+	</div>
+	<div class="col-md-4 col-md-offset-3">
+		<div id="buttons-panel">	
+			<div>
+				<button class="btn btn-primary btn-bet" id="btn-bet-less" type="submit">-</button>
+				<button class="btn btn-primary btn-bet" id="btn-bet-more" type="submit">+</button>
+				<button class="btn btn-danger btn-bet" id="btn-play" type="submit">Play</button>
+				<button type="button" class="btn btn-info" id="btn-info" data-toggle="modal" data-target=".bs-example-modal-sm">Info</button>
+			</div>
+		</div>
 	</div>
 
 	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -49,7 +49,7 @@
 	    <div class="modal-content">
 	    	<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        		<h4 class="modal-title" id="myModalLabel">Game Info</h4>
+        		<h4 class="modal-title" id="myModalLabel">Información</h4>
       		</div>
 		    <div class="modal-body">
 		    	<p id="info-panel"></p>
@@ -57,6 +57,20 @@
     		<div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     		</div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="prize-panel modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+    		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    		<h4 class="modal-title" id="myModalLabel">Premio!!!</h4>
+  		  </div>
+	      <div class="modal-body">
+	    	<p id="info-prize"></p>
+	      </div>
 	    </div>
 	  </div>
 	</div>
